@@ -37,7 +37,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const formatDecimalNumber = (e) => {
+    let value = e.target.value.replace(/[^\d.]/g, '');
+    const parts = value.split('.');
+    if (parts.length > 2) {
+      value = parts[0] + '.' + parts.slice(1).join('');
+    }
+    e.target.value = value;
+  };
+
   amountInput.addEventListener('input', formatInputNumber);
+  termInput.addEventListener('input', formatDecimalNumber);
+  rateInput.addEventListener('input', formatDecimalNumber);
 
   typeInputs.forEach(input => {
     input.addEventListener('change', () => {
